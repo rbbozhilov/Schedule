@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:Schedule.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
-        <TextBox Width="50px" Height="10"></TextBox>
+        <DataGrid  x:Name="scheduleDataGrid" AutoGenerateColumns="False" Margin="10">
+            <!-- Columns are dynamically added in code-behind -->
+        </DataGrid>
     </Grid>
 </Window>

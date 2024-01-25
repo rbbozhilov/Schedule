@@ -51,12 +51,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Date\DateService.cs" />
+    <Compile Include="Date\IDateService.cs" />
+    <Compile Include="Employees\EmployeeService.cs" />
+    <Compile Include="Employees\IEmployeeService.cs" />
     <Compile Include="Positions\IPositionService.cs" />
     <Compile Include="Positions\PositionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Employees\" />
     <Folder Include="Shifts\" />
     <Folder Include="Users\" />
   </ItemGroup>

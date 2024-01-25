@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:Schedule.WPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate x:Key="ShiftCellTemplate">
+            <TextBlock Text="{Binding}" />
+        </DataTemplate>
     </Application.Resources>
 </Application>

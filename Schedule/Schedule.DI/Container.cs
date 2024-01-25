@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Schedule.Data;
+using Schedule.Service.Date;
+using Schedule.Service.Employees;
 using Schedule.Service.Positions;
 using System.Reflection;
 
@@ -28,7 +30,10 @@ namespace Schedule.DI
         {
             var builder = new ContainerBuilder();
 
+            builder.RegisterType<ScheduleDbContext>().AsSelf();
             builder.RegisterType<PositionService>().As<IPositionService>();
+            builder.RegisterType<DateService>().As<IDateService>();
+            builder.RegisterType<EmployeeService>().As<IEmployeeService>();
 
             _container = builder.Build();
         }
