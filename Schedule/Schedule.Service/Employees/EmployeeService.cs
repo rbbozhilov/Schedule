@@ -72,13 +72,67 @@ namespace Schedule.Service.Employees
 
         public List<string> GetAllEmployees()
         {
-            var employees = this.data.Employees.Select(x => x.FirstName + " " + x.LastName).ToList();
+            var employees = this.data.Employees.Select(x => x.FirstName + " " + x.LastName).Distinct().ToList();
             return employees;
         }
 
-        public List<string> ShiftOfEmployeeForMonth(int daysOfMonth)
+        public List<string> GetPositions(string firstName, string lastName)
         {
-            throw new NotImplementedException();
+            var positionsOfEmployee = this.data.Employees
+                                                .Where(x => x.FirstName == firstName &&
+                                                            x.LastName == lastName)
+                                                .Select(x => x.Positions.Select(p => p.PositionName).ToList())
+                                                .FirstOrDefault();
+
+            return positionsOfEmployee;
+        }
+
+        public List<string> ShiftOfEmployeeForMonth(string firstName, string lastName)
+        {
+
+            var shiftOfEmployee = new List<string>();
+            StringBuilder builder = new StringBuilder();
+            var positions = this.GetPositions(firstName, lastName);
+
+
+            // Get the current month and year
+            int year = DateTime.Now.Year;
+            int month = DateTime.Now.Month;
+
+            var dates = Enumerable.Range(1, DateTime.DaysInMonth(year, month))  // Days: 1, 2 ... 31 etc.
+                          .Select(day => new DateTime(year, month, day)) // Map each day to a date
+                          .ToList(); // Load dates into a list
+
+            var firstDate = dates[0];
+            var lastDate = dates[dates.Count - 1];
+
+            var allShifts = this.data.Employees
+                                    .Where(x => x.Shift.Date >= firstDate && x.Shift.Date <= lastDate)
+                                    .Select(x => new
+                                    {
+                                        CurrentDate = x.Shift.Date,
+                                        ShiftName = x.Shift.ShiftName
+                                    })
+                                    .ToList();
+
+            foreach (var date in dates)
+            {
+                var getCurrentShift = allShifts.Where(x => x.CurrentDate == date).FirstOrDefault();
+
+                if (getCurrentShift != null)
+                {
+                    string shiftWithPositions = getCurrentShift.ShiftName + " Смяна. " + String.Join(", ", positions);
+
+                    shiftOfEmployee.Add(shiftWithPositions);
+                }
+                else
+                {
+                    shiftOfEmployee.Add("-");
+                }
+            }
+
+
+            return shiftOfEmployee;
         }
     }
 }

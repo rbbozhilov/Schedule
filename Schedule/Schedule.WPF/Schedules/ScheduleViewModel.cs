@@ -28,16 +28,22 @@ namespace Schedule.WPF.Schedules
 
             // Simulated data, replace with database retrieval
             EmployeeSchedules = new ObservableCollection<EmployeeSchedule>();
-            //{
-            //    new EmployeeSchedule { EmployeeName = "Nika", Shifts = new ObservableCollection<string> { "1 shift", "1 shift", "" } },
-            //    new EmployeeSchedule { EmployeeName = "Maria", Shifts = new ObservableCollection<string> { "2 shift", "P", "" } },
-            //    new EmployeeSchedule { EmployeeName = "Rumen", Shifts = new ObservableCollection<string> { "2 shift", "2 shift", "" } },
-            //    new EmployeeSchedule { EmployeeName = "Gosho", Shifts = new ObservableCollection<string> { "1 shift", "2 shift", "" } }
-            //};
 
-            foreach(var employee in employees)
+            foreach (var employee in employees)
             {
-                EmployeeSchedules.Add(new EmployeeSchedule { EmployeeName = employee });
+                var fullName = employee.Split(' ').ToArray();
+                var firstName = fullName[0];
+                var lastName = fullName[1];
+
+                var shiftsOfEmployee = this.employeeService.ShiftOfEmployeeForMonth(firstName, lastName);
+                
+
+                EmployeeSchedules.Add(new EmployeeSchedule
+                {
+                    EmployeeName = employee,
+                    Shifts = new ObservableCollection<string>(shiftsOfEmployee)
+                });
+
             }
 
 
