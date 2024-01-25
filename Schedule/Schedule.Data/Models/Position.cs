@@ -10,7 +10,7 @@ namespace Schedule.Data.Models
 
         public Position()
         {
-            this.Employees = new HashSet<Employee>();
+            this.Employees = new HashSet<EmployeePositions>();
         }
 
         [Key]
@@ -20,7 +20,7 @@ namespace Schedule.Data.Models
         [MaxLength(100)]
         public string PositionName { get; set; }
 
-        public ICollection<Employee> Employees { get; set; }
+        public ICollection<EmployeePositions> Employees { get; set; }
 
     }
 }

@@ -13,7 +13,7 @@ namespace Schedule.Data.Models
 
         public Employee()
         {
-            this.Positions = new HashSet<Position>();
+            this.Positions = new HashSet<EmployeePositions>();
         }
 
         [Key]
@@ -32,7 +32,7 @@ namespace Schedule.Data.Models
 
         public Shift Shift { get; set; }
 
-        public ICollection<Position> Positions { get; set; }
+        public ICollection<EmployeePositions> Positions { get; set; }
 
     }
 }

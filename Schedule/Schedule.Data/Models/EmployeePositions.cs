@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Schedule.Data.Models
 {
@@ -12,6 +13,9 @@ namespace Schedule.Data.Models
         public int PositionId { get; set; }
 
         public Position Position { get; set; }
+
+        [Required]
+        public DateTime Date { get; set; }
 
     }
 }
