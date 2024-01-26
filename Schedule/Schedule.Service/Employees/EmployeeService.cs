@@ -23,52 +23,114 @@ namespace Schedule.Service.Employees
         public void AddEmployee(string firstname,
                                 string lastname,
                                 string shiftName,
-                                DateTime date,
-                                string position)
+                                DateTime shiftDate,
+                                string position,
+                                DateTime positionDate)
         {
 
+            var employee = this.data.Employees.Where(x => x.FirstName == firstname &&
+                                                          x.LastName == lastname &&
+                                                          x.Shift.Date == shiftDate &&
+                                                          x.Shift.ShiftName == shiftName)
+                                              .FirstOrDefault();
 
-            Employee employee = this.data.Employees
-                                         .Where(x => x.FirstName == firstname && x.LastName == lastname)
-                                         .FirstOrDefault();
+            //Employee have already shift for this date
+            if (employee != null)
+            {
+                return;
+            }
+
+            employee = new Employee()
+            {
+                FirstName = firstname,
+                LastName = lastname,
+                Shift = new Shift()
+                {
+                    Date = shiftDate,
+                    ShiftName = shiftName
+                }
+            };
+
+            if(shiftName == "П")
+            {
+                this.data.Employees.Add(employee);
+
+                this.data.SaveChanges();
+
+                return;
+            }
+
+            var getPosition = this.data.Positions
+                                        .Where(x => x.PositionName == position)
+                                        .FirstOrDefault();
+
+            if (getPosition == null)
+            {
+                getPosition = new Position() { PositionName = position };
+            }
+
+            EmployeePositions employeePosition = new EmployeePositions()
+            {
+                Position = getPosition,
+                Date = positionDate
+            };
+
+            employee.Positions.Add(employeePosition);
+
+            this.data.Employees.Add(employee);
+
+            this.data.SaveChanges();
+
+        }
+
+        public void AddEmployeeWithMorePositions(string firstname,
+                               string lastname,
+                               string shiftName,
+                               DateTime shiftDate,
+                               string position,
+                               DateTime positionDate)
+        {
+
+            var employee = this.data.Employees.Where(x => x.FirstName == firstname &&
+                                                          x.LastName == lastname &&
+                                                          x.Shift.Date == shiftDate &&
+                                                          x.Shift.ShiftName == shiftName)
+                                              .FirstOrDefault();
 
             if (employee == null)
             {
-                employee = new Employee()
-                {
-                    FirstName = firstname,
-                    LastName = lastname,
-                    Shift = new Shift()
-                    {
-                        Date = date,
-                        ShiftName = shiftName
-                    }
-                };
+                return;
             }
-            else
+
+
+            var getPosition = this.data.Positions
+                                        .Where(x => x.PositionName == position)
+                                        .FirstOrDefault();
+
+            if (getPosition == null)
             {
-                bool isHaveShift = this.data.Employees.Any(x => x.Shift.Date == date);
-
-                if (!isHaveShift)
-                {
-                    employee.Shift = new Shift() { Date = date, ShiftName = shiftName };
-                }
+                getPosition = new Position() { PositionName = position };
             }
 
-            var currentPosition = this.data.Positions.Where(x => x.PositionName == position).FirstOrDefault();
+            EmployeePositions employeePosition = this.data.EmployeePositions
+                                                            .Where(x => x.Date == positionDate &&
+                                                                        x.Position.PositionName == position)
+                                                            .FirstOrDefault();
 
-            //if (currentPosition == null)
-            //{
-            //    Position newPosition = new Position() { PositionName = position };
-            //    employee.Positions.Add(newPosition);
-            //}
-            //else
-            //{
-            //    employee.Positions.Add(currentPosition);
-            //}
+            if(employeePosition != null)
+            {
+                return;
+            }
 
 
+            //ERROR CHECK IT !! WHEN MORE POSITIONS ADDED
+            employee.Positions.Add(employeePosition);
+
+            this.data.Employees.Add(employee);
+
+            this.data.SaveChanges();
         }
+
 
         public List<string> GetAllEmployees()
         {
@@ -76,7 +138,7 @@ namespace Schedule.Service.Employees
             return employees;
         }
 
-        public List<string> GetPositions(string firstName, string lastName,DateTime date)
+        public List<string> GetPositions(string firstName, string lastName, DateTime date)
         {
             var positionsOfEmployee = this.data.EmployeePositions
                                                 .Where(x => x.Employee.FirstName == firstName &&
@@ -93,7 +155,7 @@ namespace Schedule.Service.Employees
 
             var shiftOfEmployee = new List<string>();
 
-   
+
 
             // Get the current month and year
             int year = DateTime.Now.Year;
@@ -118,13 +180,13 @@ namespace Schedule.Service.Employees
 
             foreach (var date in dates)
             {
-                var positions = this.GetPositions(firstName, lastName,date);
+                var positions = this.GetPositions(firstName, lastName, date);
 
                 var getCurrentShift = allShifts.Where(x => x.CurrentDate == date).FirstOrDefault();
 
                 if (getCurrentShift != null)
                 {
-                    if(getCurrentShift.ShiftName == "П")
+                    if (getCurrentShift.ShiftName == "П")
                     {
                         shiftOfEmployee.Add("Почивка");
 

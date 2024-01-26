@@ -29,6 +29,8 @@ namespace Schedule.WPF.Schedules
             // Simulated data, replace with database retrieval
             EmployeeSchedules = new ObservableCollection<EmployeeSchedule>();
 
+            this.AddEmployees();
+
             foreach (var employee in employees)
             {
                 var fullName = employee.Split(' ').ToArray();
@@ -77,8 +79,15 @@ namespace Schedule.WPF.Schedules
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
 
+
+        private void AddEmployees()
+        {
+            // CHECK ERROR HERE !
+            //this.employeeService.AddEmployeeWithMorePositions("Tisho", "Petkanov", "2", DateTime.Parse("2024-01-02"), "Скара", DateTime.Parse("2024-01-02"));
+        }
+
+    }
     public class EmployeeSchedule
     {
         public string EmployeeName { get; set; }
