@@ -29,7 +29,7 @@ namespace Schedule.WPF.Schedules
             // Simulated data, replace with database retrieval
             EmployeeSchedules = new ObservableCollection<EmployeeSchedule>();
 
-            this.AddEmployees();
+            //this.AddEmployees();
 
             foreach (var employee in employees)
             {
@@ -83,8 +83,8 @@ namespace Schedule.WPF.Schedules
 
         private void AddEmployees()
         {
-            // CHECK ERROR HERE !
-            //this.employeeService.AddEmployeeWithMorePositions("Tisho", "Petkanov", "2", DateTime.Parse("2024-01-02"), "Скара", DateTime.Parse("2024-01-02"));
+           
+            this.employeeService.AddEmployee("Ваня", "Георгиева", "2", DateTime.Parse("2024-01-03"), "Сандвичи");
         }
 
     }

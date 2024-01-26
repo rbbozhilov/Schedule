@@ -24,8 +24,7 @@ namespace Schedule.Service.Employees
                                 string lastname,
                                 string shiftName,
                                 DateTime shiftDate,
-                                string position,
-                                DateTime positionDate)
+                                string positions)
         {
 
             var employee = this.data.Employees.Where(x => x.FirstName == firstname &&
@@ -60,20 +59,37 @@ namespace Schedule.Service.Employees
                 return;
             }
 
-            var getPosition = this.data.Positions
-                                        .Where(x => x.PositionName == position)
+            var currentPositions = positions.Split(',', (char)StringSplitOptions.RemoveEmptyEntries).ToArray();
+
+            EmployeePositions employeePosition = null;
+
+            foreach (var currentPosition in currentPositions)
+            {
+                var getPosition = this.data.Positions
+                                        .Where(x => x.PositionName == currentPosition)
                                         .FirstOrDefault();
 
-            if (getPosition == null)
-            {
-                getPosition = new Position() { PositionName = position };
-            }
+                //same position on same date
+                if(employee.Positions.Any(x => x.Position.PositionName == currentPosition &&
+                                               x.Date == shiftDate))
+                {
+                    return;
+                }
 
-            EmployeePositions employeePosition = new EmployeePositions()
-            {
-                Position = getPosition,
-                Date = positionDate
-            };
+                if (getPosition == null)
+                {
+                    getPosition = new Position() { PositionName = currentPosition };
+                }
+
+                 employeePosition = new EmployeePositions()
+                {
+                    Position = getPosition,
+                    Date = shiftDate
+                };
+
+                employee.Positions.Add(employeePosition);
+                
+            }
 
             employee.Positions.Add(employeePosition);
 
@@ -83,53 +99,6 @@ namespace Schedule.Service.Employees
 
         }
 
-        public void AddEmployeeWithMorePositions(string firstname,
-                               string lastname,
-                               string shiftName,
-                               DateTime shiftDate,
-                               string position,
-                               DateTime positionDate)
-        {
-
-            var employee = this.data.Employees.Where(x => x.FirstName == firstname &&
-                                                          x.LastName == lastname &&
-                                                          x.Shift.Date == shiftDate &&
-                                                          x.Shift.ShiftName == shiftName)
-                                              .FirstOrDefault();
-
-            if (employee == null)
-            {
-                return;
-            }
-
-
-            var getPosition = this.data.Positions
-                                        .Where(x => x.PositionName == position)
-                                        .FirstOrDefault();
-
-            if (getPosition == null)
-            {
-                getPosition = new Position() { PositionName = position };
-            }
-
-            EmployeePositions employeePosition = this.data.EmployeePositions
-                                                            .Where(x => x.Date == positionDate &&
-                                                                        x.Position.PositionName == position)
-                                                            .FirstOrDefault();
-
-            if(employeePosition != null)
-            {
-                return;
-            }
-
-
-            //ERROR CHECK IT !! WHEN MORE POSITIONS ADDED
-            employee.Positions.Add(employeePosition);
-
-            this.data.Employees.Add(employee);
-
-            this.data.SaveChanges();
-        }
 
 
         public List<string> GetAllEmployees()

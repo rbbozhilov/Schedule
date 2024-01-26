@@ -11,15 +11,7 @@ namespace Schedule.Service.Employees
                          string lastname,
                          string shiftName,
                          DateTime shiftDate,
-                         string position,
-                         DateTime positionDate);
-
-        void AddEmployeeWithMorePositions(string firstname,
-                                string lastname,
-                                string shiftName,
-                                DateTime shiftDate,
-                                string position,
-                                DateTime positionDate);
+                         string positions);
 
         List<string> GetAllEmployees();
 
