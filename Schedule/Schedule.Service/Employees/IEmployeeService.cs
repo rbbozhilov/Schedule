@@ -13,6 +13,12 @@ namespace Schedule.Service.Employees
                          DateTime shiftDate,
                          string positions);
 
+        bool EditEmployee(string firstname,
+                         string lastname,
+                         string shiftName,
+                         DateTime shiftDate,
+                         string positions);
+
         List<string> GetAllEmployees();
 
         List<string> ShiftOfEmployeeForMonth(string firstName, string lastName);

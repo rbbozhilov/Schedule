@@ -2,6 +2,7 @@
 using Schedule.Data;
 using Schedule.Service.Date;
 using Schedule.Service.Employees;
+using Schedule.Service.PasswordHash;
 using Schedule.Service.Positions;
 using System.Reflection;
 
@@ -34,6 +35,7 @@ namespace Schedule.DI
             builder.RegisterType<PositionService>().As<IPositionService>();
             builder.RegisterType<DateService>().As<IDateService>();
             builder.RegisterType<EmployeeService>().As<IEmployeeService>();
+            builder.RegisterType<Hasher>().As<IHasher>();
 
             _container = builder.Build();
         }

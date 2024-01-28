@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Schedule.Service.Date;
 using Schedule.Service.Employees;
+using Schedule.Service.PasswordHash;
 using Schedule.Service.Positions;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Schedule.WPF.Schedules
 
         private IDateService dateService = DI.Container.ContainerDI.Resolve<IDateService>();
         private IEmployeeService employeeService = DI.Container.ContainerDI.Resolve<IEmployeeService>();
+        private IHasher hasher = DI.Container.ContainerDI.Resolve<IHasher>();
 
         public ScheduleViewModel()
         {
@@ -30,6 +32,8 @@ namespace Schedule.WPF.Schedules
             EmployeeSchedules = new ObservableCollection<EmployeeSchedule>();
 
             //this.AddEmployees();
+            this.EditEmploye();
+
 
             foreach (var employee in employees)
             {
@@ -84,7 +88,13 @@ namespace Schedule.WPF.Schedules
         private void AddEmployees()
         {
            
-            this.employeeService.AddEmployee("Ваня", "Георгиева", "2", DateTime.Parse("2024-01-03"), "Сандвичи");
+            this.employeeService.AddEmployee("Ваня", "Георгиева", "2", DateTime.Parse("2024-01-02"), "Сандвичи");
+        }
+
+        private void EditEmploye()
+        {
+
+            bool isValide = this.employeeService.EditEmployee("Ваня", "Георгиева", "2", DateTime.Parse("2024-01-02"), "Скара,Каса");
         }
 
     }
