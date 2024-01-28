@@ -32,8 +32,8 @@ namespace Schedule.WPF.Schedules
             EmployeeSchedules = new ObservableCollection<EmployeeSchedule>();
 
             //this.AddEmployees();
-            this.EditEmploye();
-
+            //this.EditEmploye();
+            int count = this.employeeService.DaysOfWork("Румен", "Божилов", DateTime.Parse("2024-01-01"), DateTime.Parse("2024-01-15"));
 
             foreach (var employee in employees)
             {
@@ -94,7 +94,7 @@ namespace Schedule.WPF.Schedules
         private void EditEmploye()
         {
 
-            bool isValide = this.employeeService.EditEmployee("Ваня", "Георгиева", "2", DateTime.Parse("2024-01-02"), "Скара,Каса");
+            bool isValide = this.employeeService.EditEmployee("Ваня", "Георгиева", "2", DateTime.Parse("2024-01-03"), "Скара,Каса");
         }
 
     }

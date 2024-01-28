@@ -19,6 +19,8 @@ namespace Schedule.Service.Employees
                          DateTime shiftDate,
                          string positions);
 
+        int DaysOfWork(string firstname, string lastname, DateTime startDate, DateTime endDate);
+
         List<string> GetAllEmployees();
 
         List<string> ShiftOfEmployeeForMonth(string firstName, string lastName);
