@@ -55,16 +55,11 @@
     <Compile Include="Date\IDateService.cs" />
     <Compile Include="Employees\EmployeeService.cs" />
     <Compile Include="Employees\IEmployeeService.cs" />
-    <Compile Include="PasswordHash\Hasher.cs" />
-    <Compile Include="PasswordHash\IHasher.cs" />
     <Compile Include="Positions\IPositionService.cs" />
     <Compile Include="Positions\PositionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Shifts\" />
-    <Folder Include="Users\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Schedule.Data\Schedule.Data.csproj">
       <Project>{060936F7-BE26-4A40-9EE8-323D0692B1BF}</Project>

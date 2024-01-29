@@ -1,16 +1,10 @@
 ﻿using Autofac;
 using Schedule.Service.Date;
 using Schedule.Service.Employees;
-using Schedule.Service.PasswordHash;
-using Schedule.Service.Positions;
-using System;
-using System.Collections.Generic;
+
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Schedule.WPF.Schedules
 {
     public class ScheduleViewModel : INotifyPropertyChanged
@@ -19,7 +13,6 @@ namespace Schedule.WPF.Schedules
 
         private IDateService dateService = DI.Container.ContainerDI.Resolve<IDateService>();
         private IEmployeeService employeeService = DI.Container.ContainerDI.Resolve<IEmployeeService>();
-        private IHasher hasher = DI.Container.ContainerDI.Resolve<IHasher>();
 
         public ScheduleViewModel()
         {
@@ -38,7 +31,7 @@ namespace Schedule.WPF.Schedules
                 var lastName = fullName[1];
 
                 var shiftsOfEmployee = this.employeeService.ShiftOfEmployeeForMonth(firstName, lastName);
-                
+
 
                 EmployeeSchedules.Add(new EmployeeSchedule
                 {
