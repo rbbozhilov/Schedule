@@ -39,9 +39,9 @@
                 </Canvas>
             </TabItem>
 
-            <TabItem Header="Edit">
+            <TabItem Header="Add">
 
-                <Canvas>
+                <Grid>
                     <!--<Label>Number:</Label>
                     <TextBox Name="editNumber" Width="70px" Canvas.Left="70" Canvas.Top="4px"></TextBox>
                     <Label Canvas.Top="30px">First Name:</Label>
@@ -53,8 +53,38 @@
                     <Label Canvas.Top="120px">End Date:</Label>
                     <TextBox Name="editEndDate" Width="70px" Canvas.Left="70" Canvas.Top="132"></TextBox>
                     <Button Click="EditClient" Height="20" Width="40" Content="Edit" Canvas.Top="170" Canvas.Left="53"></Button>-->
-                </Canvas>
+                </Grid>
 
+            </TabItem>
+
+            <TabItem Header="Edit">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Label Content="First Name" Grid.Row="0"/>
+                    <TextBox Name="firstName" Width="80px" Grid.Row="0" Margin="5"/>
+
+                    <Label Content="Last Name" Grid.Row="1"/>
+                    <TextBox Name="lastName" Width="80px" Grid.Row="1" Margin="5"/>
+
+                    <Label Content="Shift Name" Grid.Row="2"/>
+                    <TextBox Name="shiftName" Width="80px" Grid.Row="2" Margin="5"/>
+
+                    <Label Content="Shift Date" Grid.Row="3"/>
+                    <TextBox Name="shiftDate" Width="80px" Grid.Row="3" Margin="5"/>
+
+                    <Label Content="Positions" Grid.Row="4"/>
+                    <TextBox Name="positions" Width="80px" Grid.Row="4" Margin="5"/>
+
+                    <Button Content="Submit" Click="Edit" Grid.Row="5" HorizontalAlignment="Center" Margin="5"/>
+                </Grid>
             </TabItem>
         </TabControl>
 

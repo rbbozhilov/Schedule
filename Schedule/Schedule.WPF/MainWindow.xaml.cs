@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Schedule.DI;
+using Schedule.Service.Employees;
 using Schedule.Service.Positions;
 using Schedule.WPF.Schedules;
 using System;
@@ -25,6 +26,7 @@ namespace Schedule.WPF
     public partial class MainWindow
     {
         private ScheduleViewModel viewModel = new ScheduleViewModel();
+        private IEmployeeService employeeService = DI.Container.ContainerDI.Resolve<IEmployeeService>();
 
 
         public MainWindow()
@@ -68,9 +70,18 @@ namespace Schedule.WPF
             }
         }
 
-        private void Add_Employee(object sender, RoutedEventArgs e)
+        private void Edit(object sender, RoutedEventArgs e)
         {
-            
+            var isEditted = this.employeeService.EditEmployee(firstName.Text,
+                                                              lastName.Text,
+                                                              shiftName.Text,
+                                                              DateTime.Parse(shiftDate.Text),
+                                                              positions.Text);
+
+            if(isEditted == false)
+            {
+                MessageBox.Show("Something went wrong!");
+            }
         }
     }
 }
