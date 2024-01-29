@@ -1,15 +1,63 @@
-﻿<Window x:Class="Schedule.WPF.MainWindow"
+﻿<Controls:MetroWindow x:Class="Schedule.WPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Schedule.WPF"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
-        <DataGrid  x:Name="scheduleDataGrid" AutoGenerateColumns="False" Margin="10">
-            <!-- Columns are dynamically added in code-behind -->
-        </DataGrid>
+        <!-- Navigation Bar -->
+        <TabControl>
+            <TabItem Header="Schedule">
+                <DataGrid x:Name="scheduleDataGrid" AutoGenerateColumns="False" Margin="0,30">
+                    <!-- Columns are dynamically added in code-behind -->
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header="Search">
+                <Canvas>
+                    <!--<Label>Client Number</Label>
+                    <TextBox Name="number" Width="50px" Canvas.Left="92px" Canvas.Top="4"></TextBox>
+                    <Button Click="SearchByNumber" Height="20" Width="40" Content="Search" Canvas.Left="150px" Canvas.Top="4"></Button>
+                    <Label Canvas.Left="300px" Canvas.Top="50px">Information:</Label>
+                    <Label Canvas.Left="250px" Canvas.Top="100px">Name:</Label>
+                    <Label Name="fullName" Canvas.Left="300px" Canvas.Top="100px"></Label>
+                    <Label Canvas.Left="250px" Canvas.Top="130px">Start Date:</Label>
+                    <Label Name="startDate" Canvas.Left="320px" Canvas.Top="130px"></Label>
+                    <Label Canvas.Left="250px" Canvas.Top="160px">End Date:</Label>
+                    <Label Name="endDate" Canvas.Left="320px" Canvas.Top="160px"></Label>
+                    <Label Canvas.Left="250px" Canvas.Top="190px">Number:</Label>
+                    <Label Name="informationNumber" Canvas.Left="310px" Canvas.Top="190px"></Label>
+                    <Label Canvas.Left="500">Client First Name:</Label>
+                    <TextBox Name="firstNameSearch" Width="50px" Canvas.Left="605px" Canvas.Top="4"></TextBox>
+                    <Label Canvas.Left="500" Canvas.Top="30px">Client Last Name:</Label>
+                    <TextBox Name="lastNameSearch" Width="50px" Canvas.Left="605px" Canvas.Top="35"></TextBox>
+                    <Button Click="SearchByNames" Height="20" Width="40" Content="Search" Canvas.Left="680px" Canvas.Top="20"></Button>-->
+                </Canvas>
+            </TabItem>
+
+            <TabItem Header="Edit">
+
+                <Canvas>
+                    <!--<Label>Number:</Label>
+                    <TextBox Name="editNumber" Width="70px" Canvas.Left="70" Canvas.Top="4px"></TextBox>
+                    <Label Canvas.Top="30px">First Name:</Label>
+                    <TextBox Name="editFirstName" Width="70px" Canvas.Left="70" Canvas.Top="33px"></TextBox>
+                    <Label Canvas.Top="60px">Last Name:</Label>
+                    <TextBox Name="editLastName" Width="70px" Canvas.Left="70" Canvas.Top="66px"></TextBox>
+                    <Label Canvas.Top="90px">Start Date:</Label>
+                    <TextBox Name="editStartDate" Width="70px" Canvas.Left="70" Canvas.Top="99px"></TextBox>
+                    <Label Canvas.Top="120px">End Date:</Label>
+                    <TextBox Name="editEndDate" Width="70px" Canvas.Left="70" Canvas.Top="132"></TextBox>
+                    <Button Click="EditClient" Height="20" Width="40" Content="Edit" Canvas.Top="170" Canvas.Left="53"></Button>-->
+                </Canvas>
+
+            </TabItem>
+        </TabControl>
+
+
     </Grid>
-</Window>
+</Controls:MetroWindow>

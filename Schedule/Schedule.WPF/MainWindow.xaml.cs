@@ -22,7 +22,7 @@ namespace Schedule.WPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private ScheduleViewModel viewModel = new ScheduleViewModel();
 
@@ -68,5 +68,9 @@ namespace Schedule.WPF
             }
         }
 
+        private void Add_Employee(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
