@@ -18,43 +18,64 @@
             </TabItem>
 
             <TabItem Header="Search">
-                <Canvas>
-                    <!--<Label>Client Number</Label>
-                    <TextBox Name="number" Width="50px" Canvas.Left="92px" Canvas.Top="4"></TextBox>
-                    <Button Click="SearchByNumber" Height="20" Width="40" Content="Search" Canvas.Left="150px" Canvas.Top="4"></Button>
-                    <Label Canvas.Left="300px" Canvas.Top="50px">Information:</Label>
-                    <Label Canvas.Left="250px" Canvas.Top="100px">Name:</Label>
-                    <Label Name="fullName" Canvas.Left="300px" Canvas.Top="100px"></Label>
-                    <Label Canvas.Left="250px" Canvas.Top="130px">Start Date:</Label>
-                    <Label Name="startDate" Canvas.Left="320px" Canvas.Top="130px"></Label>
-                    <Label Canvas.Left="250px" Canvas.Top="160px">End Date:</Label>
-                    <Label Name="endDate" Canvas.Left="320px" Canvas.Top="160px"></Label>
-                    <Label Canvas.Left="250px" Canvas.Top="190px">Number:</Label>
-                    <Label Name="informationNumber" Canvas.Left="310px" Canvas.Top="190px"></Label>
-                    <Label Canvas.Left="500">Client First Name:</Label>
-                    <TextBox Name="firstNameSearch" Width="50px" Canvas.Left="605px" Canvas.Top="4"></TextBox>
-                    <Label Canvas.Left="500" Canvas.Top="30px">Client Last Name:</Label>
-                    <TextBox Name="lastNameSearch" Width="50px" Canvas.Left="605px" Canvas.Top="35"></TextBox>
-                    <Button Click="SearchByNames" Height="20" Width="40" Content="Search" Canvas.Left="680px" Canvas.Top="20"></Button>-->
-                </Canvas>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="First Name" Grid.Row="0"/>
+                    <TextBox Name="firstName" Width="80px" Grid.Row="0" Margin="5"/>
+
+                    <Label Content="Last Name" Grid.Row="1"/>
+                    <TextBox Name="lastName" Width="80px" Grid.Row="1" Margin="5"/>
+
+                    <Label Content="Start Date" Grid.Row="2"/>
+                    <TextBox Name="startDate" Width="80px" Grid.Row="2" Margin="5"/>
+
+                    <Label Content="End Date" Grid.Row="3"/>
+                    <TextBox Name="endDate" Width="80px" Grid.Row="3" Margin="5"/>
+
+                    <Button Content="Search" Click="Search" Grid.Row="4" HorizontalAlignment="Center" Margin="5"/>
+
+                    <Label Name="days" Grid.Row="5"/>
+
+                </Grid>
             </TabItem>
 
             <TabItem Header="Add">
 
                 <Grid>
-                    <!--<Label>Number:</Label>
-                    <TextBox Name="editNumber" Width="70px" Canvas.Left="70" Canvas.Top="4px"></TextBox>
-                    <Label Canvas.Top="30px">First Name:</Label>
-                    <TextBox Name="editFirstName" Width="70px" Canvas.Left="70" Canvas.Top="33px"></TextBox>
-                    <Label Canvas.Top="60px">Last Name:</Label>
-                    <TextBox Name="editLastName" Width="70px" Canvas.Left="70" Canvas.Top="66px"></TextBox>
-                    <Label Canvas.Top="90px">Start Date:</Label>
-                    <TextBox Name="editStartDate" Width="70px" Canvas.Left="70" Canvas.Top="99px"></TextBox>
-                    <Label Canvas.Top="120px">End Date:</Label>
-                    <TextBox Name="editEndDate" Width="70px" Canvas.Left="70" Canvas.Top="132"></TextBox>
-                    <Button Click="EditClient" Height="20" Width="40" Content="Edit" Canvas.Top="170" Canvas.Left="53"></Button>-->
-                </Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
+                    <Label Content="First Name" Grid.Row="0"/>
+                    <TextBox Name="firstNameAdd" Width="80px" Grid.Row="0" Margin="5"/>
+
+                    <Label Content="Last Name" Grid.Row="1"/>
+                    <TextBox Name="lastNameAdd" Width="80px" Grid.Row="1" Margin="5"/>
+
+                    <Label Content="Shift Name" Grid.Row="2"/>
+                    <TextBox Name="shiftNameAdd" Width="80px" Grid.Row="2" Margin="5"/>
+
+                    <Label Content="Shift Date" Grid.Row="3"/>
+                    <TextBox Name="shiftDateAdd" Width="80px" Grid.Row="3" Margin="5"/>
+
+                    <Label Content="Positions" Grid.Row="4"/>
+                    <TextBox Name="positionsAdd" Width="80px" Grid.Row="4" Margin="5"/>
+
+                    <Button Content="Submit" Click="Add" Grid.Row="5" HorizontalAlignment="Center" Margin="5"/>
+                </Grid>
             </TabItem>
 
             <TabItem Header="Edit">
@@ -69,19 +90,19 @@
                     </Grid.RowDefinitions>
                     
                     <Label Content="First Name" Grid.Row="0"/>
-                    <TextBox Name="firstName" Width="80px" Grid.Row="0" Margin="5"/>
+                    <TextBox Name="firstNameEdit" Width="80px" Grid.Row="0" Margin="5"/>
 
                     <Label Content="Last Name" Grid.Row="1"/>
-                    <TextBox Name="lastName" Width="80px" Grid.Row="1" Margin="5"/>
+                    <TextBox Name="lastNameEdit" Width="80px" Grid.Row="1" Margin="5"/>
 
                     <Label Content="Shift Name" Grid.Row="2"/>
-                    <TextBox Name="shiftName" Width="80px" Grid.Row="2" Margin="5"/>
+                    <TextBox Name="shiftNameEdit" Width="80px" Grid.Row="2" Margin="5"/>
 
                     <Label Content="Shift Date" Grid.Row="3"/>
-                    <TextBox Name="shiftDate" Width="80px" Grid.Row="3" Margin="5"/>
+                    <TextBox Name="shiftDateEdit" Width="80px" Grid.Row="3" Margin="5"/>
 
                     <Label Content="Positions" Grid.Row="4"/>
-                    <TextBox Name="positions" Width="80px" Grid.Row="4" Margin="5"/>
+                    <TextBox Name="positionsEdit" Width="80px" Grid.Row="4" Margin="5"/>
 
                     <Button Content="Submit" Click="Edit" Grid.Row="5" HorizontalAlignment="Center" Margin="5"/>
                 </Grid>

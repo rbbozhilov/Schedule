@@ -38,7 +38,7 @@ namespace Schedule.WPF
             this.DataContext = new ScheduleViewModel();
             PopulateGrid();
             scheduleDataGrid.IsReadOnly = true;
-           
+
 
         }
 
@@ -72,16 +72,40 @@ namespace Schedule.WPF
 
         private void Edit(object sender, RoutedEventArgs e)
         {
-            var isEditted = this.employeeService.EditEmployee(firstName.Text,
-                                                              lastName.Text,
-                                                              shiftName.Text,
-                                                              DateTime.Parse(shiftDate.Text),
-                                                              positions.Text);
+            var isEditted = this.employeeService.EditEmployee(firstNameEdit.Text,
+                                                              lastNameEdit.Text,
+                                                              shiftNameEdit.Text,
+                                                              DateTime.Parse(shiftDateEdit.Text),
+                                                              positionsEdit.Text);
 
-            if(isEditted == false)
+            if (isEditted == false)
             {
                 MessageBox.Show("Something went wrong!");
+                return;
             }
+
+            MessageBox.Show("Succesfull editted!");
+        }
+
+        private void Add(object sender, RoutedEventArgs e)
+        {
+            this.employeeService.AddEmployee(firstNameAdd.Text,
+                                             lastNameAdd.Text,
+                                             shiftNameAdd.Text,
+                                             DateTime.Parse(shiftDateAdd.Text),
+                                             positionsAdd.Text);
+
+            MessageBox.Show("Succesfull added!");
+        }
+
+        private void Search(object sender, RoutedEventArgs e)
+        {
+            string working = "Working days: ";
+
+            days.Content = working + this.employeeService.DaysOfWork(firstName.Text,
+                                                                     lastName.Text,
+                                                                     DateTime.Parse(startDate.Text),
+                                                                     DateTime.Parse(endDate.Text));
         }
     }
 }
