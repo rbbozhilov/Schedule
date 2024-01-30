@@ -16,7 +16,6 @@ namespace Schedule.DI
         {
             get
             {
-                // If the container is null, initialize it.
                 if (_container == null)
                 {
                     Init();

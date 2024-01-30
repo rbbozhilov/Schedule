@@ -16,12 +16,12 @@ namespace Schedule.WPF.Schedules
 
         public ScheduleViewModel()
         {
-            // Initialize your data here from the database
+
             var employees = this.employeeService.GetAllEmployees();
 
             Dates = new ObservableCollection<string>(this.dateService.GetDaysFromMonth());
 
-            // Simulated data, replace with database retrieval
+
             EmployeeSchedules = new ObservableCollection<EmployeeSchedule>();
 
             foreach (var employee in employees)

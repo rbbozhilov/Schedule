@@ -35,7 +35,7 @@ namespace Schedule.Service.Employees
                                                           x.Shift.ShiftName == shiftName)
                                               .FirstOrDefault();
 
-            //Employee have already shift for this date
+
             if (employee != null)
             {
                 return;
@@ -71,7 +71,7 @@ namespace Schedule.Service.Employees
                                         .Where(x => x.PositionName == currentPosition)
                                         .FirstOrDefault();
 
-                //same position on same date
+
                 if (employee.Positions.Any(x => x.Position.PositionName == currentPosition &&
                                                x.Date == shiftDate))
                 {
@@ -178,13 +178,12 @@ namespace Schedule.Service.Employees
 
 
 
-            // Get the current month and year
             int year = DateTime.Now.Year;
             int month = DateTime.Now.Month;
 
-            var dates = Enumerable.Range(1, DateTime.DaysInMonth(year, month))  // Days: 1, 2 ... 31 etc.
-                          .Select(day => new DateTime(year, month, day)) // Map each day to a date
-                          .ToList(); // Load dates into a list
+            var dates = Enumerable.Range(1, DateTime.DaysInMonth(year, month))
+                          .Select(day => new DateTime(year, month, day)) 
+                          .ToList(); 
 
             var firstDate = dates[0];
             var lastDate = dates[dates.Count - 1];
