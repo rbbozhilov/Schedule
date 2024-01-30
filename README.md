@@ -18,6 +18,6 @@ This is a Schedule desktop app. It shows the schedule for 1 month, as each emplo
 
 ## License
 
-If you want to use it, just text me on my mail: rbbojilov@gmail.com, i will give you instructions how to use it.
+If you want to use it, just text me on my mail: rbbojilov@gmail.com, i will give you instructions how to install and work with it.
 
 This project is licensed under the [MIT License](LICENSE).
