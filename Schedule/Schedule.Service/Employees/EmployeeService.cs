@@ -206,14 +206,14 @@ namespace Schedule.Service.Employees
 
                 if (getCurrentShift != null)
                 {
-                    if (getCurrentShift.ShiftName == "П")
+                    if (getCurrentShift.ShiftName == "Rest")
                     {
-                        shiftOfEmployee.Add("Почивка");
+                        shiftOfEmployee.Add("REST");
 
                         continue;
                     }
 
-                    string shiftWithPositions = getCurrentShift.ShiftName + " Смяна. " + String.Join(", ", positions);
+                    string shiftWithPositions = getCurrentShift.ShiftName  + " Shift, " + String.Join(", ", positions);
 
                     shiftOfEmployee.Add(shiftWithPositions);
                 }
